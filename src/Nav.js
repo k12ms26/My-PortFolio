@@ -6,19 +6,19 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+//const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-class Nav extends Component {
-    render(){
-        const {
-            user,
-            signOut,
-            signInWithGoogle,
-          } = this.props;
+const Nav = ({handleLogout}) => {
+    // render(){
+    //     const {
+    //         user,
+    //         signOut,
+    //         signInWithGoogle,
+    //       } = this.props;
     
-        const navStyle = {
-            color:'white'
-        };
+         const navStyle = {
+             color:'white'
+         };
     
         return(
             <nav>
@@ -35,8 +35,10 @@ class Nav extends Component {
                     <Link style={navStyle} to="/new">
                         <li>마이페이지</li>
                     </Link>
+                    <button onClick={handleLogout}>Logout</button> 
                 </ul>
-                <div>
+                
+                {/* <div>
                     {
                         user 
                         ? <p>{user.displayName}님, 반갑습니다</p>
@@ -47,22 +49,22 @@ class Nav extends Component {
                         user
                         ? <button onClick={signOut}>로그아웃</button>
                         : <button onClick={signInWithGoogle}>로그인</button>
-                    }
+                    } */}
             </nav>
         );
     }
-}
-
-const firebaseAppAuth = firebaseApp.auth();
-
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
-
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(Nav);
 
 
-//export default Nav;
+//const firebaseAppAuth = firebaseApp.auth();
+
+//const providers = {
+//  googleProvider: new firebase.auth.GoogleAuthProvider(),
+//};
+
+//export default withFirebaseAuth({
+//  providers,
+//  firebaseAppAuth,
+//})(Nav);
+
+
+export default Nav;

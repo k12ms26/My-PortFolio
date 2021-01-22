@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 const config = {
     apiKey: "AIzaSyCzSBy1pY5OiTiWFKyWnjZ83jK7PZihXc0",
     authDomain: "madcamp2-f5aa4.firebaseapp.com",
@@ -8,5 +10,7 @@ const config = {
     appId: "1:364591324231:web:1dfbb74d564426c2aea562",
     measurementId: "G-BMQ8QMYF3G"
   };
+  
+  const fire = firebase.initializeApp(config);
 
-  export default config;
+  export default fire;
