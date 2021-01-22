@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import question_mark from './image/question_mark.png';
 import firebaseConfig from './firebaseConfig';
+import Question from './question';
+// import { Modal } from './components/modal/Modal';
 
 //const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -19,14 +22,23 @@ const Nav = ({handleLogout}) => {
          const navStyle = {
              color:'white'
          };
+
+        const [show, setShow] = useState(false);
+
+        const closeModalHandler = () => setShow(false);
     
         return(
             <nav>
                 <Link style={navStyle} to="/">
                     <h3>제목 뭐할까</h3>
                 </Link>
+                <Question />
+                {/* { show ? <div onClick={closeModalHandler} className="back-drop"></div> : null }
+                <button className="btn-openModal" onClick={() => setShow(true)}>Open Modal</button>
+                <Modal show={show} close={closeModalHandler}/> */}
+                {/* <button className="question_mark" onClick={"javascript:location.href="+{Modal}}><img className="question_mark2" src={question_mark} /></button> */}
                 <ul className="nav-links">
-                    <Link style={navStyle} to="/about">
+                    <Link style={navStyle} to="/countword">
                         <li>자기소개서 작성</li>
                     </Link>
                     <Link style={navStyle} to="/shop">
@@ -50,7 +62,9 @@ const Nav = ({handleLogout}) => {
                         ? <button onClick={signOut}>로그아웃</button>
                         : <button onClick={signInWithGoogle}>로그인</button>
                     } */}
+            
             </nav>
+            
         );
     }
 

@@ -3,7 +3,6 @@ import './App.css';
 import { Link } from 'react-router-dom';
 
 function Shop() {
-
     return(
         <div>
             <h1>Shop Page</h1>

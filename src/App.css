@@ -123,10 +123,12 @@ button {
   );
 }
 
-textarea {
-  width : 50%;
+.countword {
+  width : 70%;
   height: 500px;
   resize: none;
+  background-color : lightgray;
+  color:white;
 }
 
 text {
@@ -155,4 +157,62 @@ input {
   width: 86px;
   padding: 8px 0;
   background: #3a2b58;
+}
+
+.question_mark {
+  max-width: 1.8%;
+  max-height: 1.8%;
+  margin-left: -105%;
+  /* filter:invert(100%); */
+  /* background-size:cover; */
+  /* background-image: url("./image/question_mark.png"); */
+}
+
+.question_mark2 {
+  max-width: 15%;
+}
+
+.form-control {
+  width: 80%;
+  border : 5px black;
+  margin-top: 2.5%;
+  margin-bottom: 0.5%;
+  line-height: 300%;
+  border-style: solid;
+  border-width: 1px;
+  height: auto;
+}
+
+.sendbtn {
+  width : 50%;
+  margin-top : 2.5%;
+  line-height: 300%;
+  margin-bottom: 2.5%;
+}
+
+.sendmessage {
+  width : 80%;
+  height : auto;
+  resize: none;
+  margin-top : 2.5%;
+  line-height: 200%;
+}
+
+.name {
+  width: 80%;
+  border : 5px black;
+  margin-top: 3.5%;
+  margin-bottom: 0.5%;
+  border-style: solid;
+  border-width: 1px;
+  line-height: 300%;
+  height: auto;
+}
+
+.mailTitle {
+  margin-top: 2.5%;
+}
+
+.qnabtn {
+  background-color : none;
 }

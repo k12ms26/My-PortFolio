@@ -8,9 +8,6 @@ export default class About extends Component {
             value: ""
         }
     }
-    // state = {
-    //     value: null
-    // };
 
     handleChange = (e) => {
         this.setState({
@@ -23,7 +20,7 @@ export default class About extends Component {
             <>
                 <br></br>
                 <form>
-                    <textarea value={value} onChange={this.handleChange}></textarea>
+                    <textarea className="countword" value={value} onChange={this.handleChange}></textarea>
                 </form>
                 <br></br>
                 <input type="number" id="result" readOnly value={value.length}></input><text>자</text>
