@@ -27,13 +27,13 @@ const Nav = ({handleLogout}) => {
                 </Link>
                 <ul className="nav-links">
                     <Link style={navStyle} to="/about">
-                        <li>편성표</li>
+                        <li>자기소개서 작성</li>
                     </Link>
                     <Link style={navStyle} to="/shop">
-                        <li>추천받기</li>
+                        <li>활동 기록</li>
                     </Link>
                     <Link style={navStyle} to="/new">
-                        <li>마이페이지</li>
+                        <li>커뮤니티</li>
                     </Link>
                     <button onClick={handleLogout}>Logout</button> 
                 </ul>

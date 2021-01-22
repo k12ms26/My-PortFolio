@@ -123,6 +123,21 @@ button {
   );
 }
 
+textarea {
+  width : 50%;
+  height: 500px;
+  resize: none;
+}
+
+text {
+  color : white;
+}
+
+input {
+  width:2%;
+  height:2%;
+  border:none;
+}
 .hero nav {
   background: #603bbb;
   width: 100%;
