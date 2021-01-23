@@ -1,7 +1,7 @@
 import React from 'react';
 import { withFirebase } from '../Firebase';
 import loader from './loader.gif';
-
+import firebase from 'firebase';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,7 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
 function ActivityList(props) {
-    const { loading, activities, editActivity, setOpenSnackbar, setSnackbarMsg, setEditing } = props;
+    const { loading, activities, editActivity, setOpenSnackbar, setSnackbarMsg, setEditing, authUser } = props;
 
     const deleteActivity = (i) => {
         // Get key of activity in firebase
@@ -26,8 +26,7 @@ function ActivityList(props) {
             name: null,
         };
 
-        props.firebase.updateActivity(props.authUser.uid, emptyActivity, activityKey);
-
+        firebase.database().ref(authUser.uid).child(activityKey).remove();
         // Show notification
         setOpenSnackbar(true);
         setSnackbarMsg('Deleted activity');
@@ -55,9 +54,9 @@ function ActivityList(props) {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Type</TableCell>
-                                    <TableCell>Duration</TableCell>
+                                    <TableCell>활동명</TableCell>
+                                    <TableCell>종류</TableCell>
+                                    <TableCell>중요도</TableCell>
                                     <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -67,13 +66,13 @@ function ActivityList(props) {
                                         let { name, type, duration } = activity;
                                         switch (activity.type) {
                                             case 1:
-                                                type = "Lifting weights";
+                                                type = "자소서";
                                                 break;
                                             case 2:
-                                                type = "Running";
+                                                type = "보고서";
                                                 break;
                                             case 3:
-                                                type = "Cycling";
+                                                type = "면접 모의 질문";
                                                 break;
                                             default:
                                                 type = "Not set";

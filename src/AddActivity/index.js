@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
+import firebase from 'firebase';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -22,8 +23,8 @@ const useStyles = makeStyles(theme => ({
 
 function AddActivity(props) {
     const classes = useStyles();
-
-    const { authUser, firebase, selectedDay, setOpenSnackbar, setSnackbarMsg } = props;
+    
+    const { authUser,  selectedDay, setOpenSnackbar, setSnackbarMsg } = props;
     const uid = authUser.uid;
 
     // Set query date for updating database
@@ -59,7 +60,7 @@ function AddActivity(props) {
     // Add the activity to firebase via the API made in this app
     const handleSubmit = () => {
         if (authUser) {
-            firebase.addActivity(uid, activity);
+            firebase.database().ref(uid).push(activity)
             setActivity(defaultActivity);
             // Show notification
             setOpenSnackbar(true);
@@ -86,7 +87,7 @@ function AddActivity(props) {
                 />
                 <div style={{ marginTop: '20px', marginBottom: '30px' }}>
                     <Typography id="discrete-slider" gutterBottom>
-                        Type
+                        종류
                     </Typography>
                     <Select
                         labelId="demo-simple-select-label"
@@ -96,13 +97,13 @@ function AddActivity(props) {
                         name="type"
                         onChange={handleChange}
                     >
-                        <MenuItem value={1}>Lifting Weights</MenuItem>
-                        <MenuItem value={2}>Running</MenuItem>
-                        <MenuItem value={3}>Cycling</MenuItem>
+                        <MenuItem value={1}>자소서</MenuItem>
+                        <MenuItem value={2}>보고서</MenuItem>
+                        <MenuItem value={3}>면접 모의 질문</MenuItem>
                     </Select>
                 </div>
                 <Typography id="discrete-slider" gutterBottom>
-                    Duration
+                    중요도
                 </Typography>
                 <Slider
                     defaultValue={activity.duration}
@@ -111,7 +112,7 @@ function AddActivity(props) {
                     step={10}
                     marks
                     min={10}
-                    max={120}
+                    max={100}
                     name="duration"
                     onChange={handleSlider}
                     style={{ marginBottom: '20px' }}
@@ -125,7 +126,7 @@ function AddActivity(props) {
                 onClick={handleSubmit}
                 disabled={isValid}
             >
-                Add activity
+                저장
             </Button>
         </form>
     )

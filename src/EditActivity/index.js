@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withFirebase } from '../Firebase';
 
 import { makeStyles } from '@material-ui/core/styles';
-
+import firebase from 'firebase';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 function EditActivity(props) {
     const classes = useStyles();
 
-    const { authUser, firebase, activity, activityKey, setEditing, setOpenSnackbar, setSnackbarMsg } = props;
+    const { authUser, activity, activityKey, setEditing, setOpenSnackbar, setSnackbarMsg, activities } = props;
     const uid = authUser.uid;
 
     // Set default activity object
@@ -52,9 +52,12 @@ function EditActivity(props) {
     const isValid = newActivity.name === '';
 
     // Add the activity to firebase via the API made in this app
-    const handleSubmit = action => {
+    const handleSubmit = e => {
         if (authUser) {
-            firebase.updateActivity(uid, newActivity, activityKey);
+            //firebase.updateActivity(uid, newActivity, activityKey);
+
+            firebase.database().ref(authUser.uid).child(activityKey).remove();
+            firebase.database().ref(authUser.uid).push(newActivity);
             setEditing(false);
             // Show alert and hide after 3sec
             setOpenSnackbar(true);
@@ -81,7 +84,7 @@ function EditActivity(props) {
                 />
                 <div style={{ marginTop: '20px', marginBottom: '30px' }}>
                     <Typography id="discrete-slider" gutterBottom>
-                        Type
+                        종류
                     </Typography>
                     <Select
                         labelId="demo-simple-select-label"
@@ -91,13 +94,13 @@ function EditActivity(props) {
                         name="type"
                         onChange={handleChange}
                     >
-                        <MenuItem value={1}>Lifting Weights</MenuItem>
-                        <MenuItem value={2}>Running</MenuItem>
-                        <MenuItem value={3}>Cycling</MenuItem>
+                        <MenuItem value={1}>자소서</MenuItem>
+                        <MenuItem value={2}>보고서</MenuItem>
+                        <MenuItem value={3}>면접 모의 질문</MenuItem>
                     </Select>
                 </div>
                 <Typography id="discrete-slider" gutterBottom>
-                    Duration
+                    중요도
                 </Typography>
                 <Slider
                     defaultValue={parseInt(newActivity.duration)}
@@ -106,7 +109,7 @@ function EditActivity(props) {
                     step={10}
                     marks
                     min={10}
-                    max={120}
+                    max={100}
                     name="duration"
                     onChange={handleSlider}
                     style={{ marginBottom: '20px' }}

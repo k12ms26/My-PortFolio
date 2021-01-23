@@ -17,7 +17,7 @@ class Firebase {
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
-        this.db = app.database();
+        this.database = app.database().ref();
     }
     
     /*** Authentication  ***/
@@ -34,16 +34,16 @@ class Firebase {
         this.auth.sendPasswordResetEmail(email);
     
     /*** Database ***/
-    user = uid => this.db.ref(`users/${uid}`);
-    users = () => this.db.ref('users');
+    user = uid => this.database.ref(`users/${uid}`);
+    users = () => this.database.ref('users');
 
     addActivity = (uid, activity) => {
-        const ref = this.db.ref().child(`users/${uid}/activities`);
+        const ref = this.database.ref().child(`users/${uid}/activities`);
         ref.push(activity);
     };
 
     updateActivity = (uid, activity, activityKey) => {
-        const ref = this.db.ref().child(`users/${uid}/activities/${activityKey}`);
+        const ref = this.datab.ref().child(`users/${uid}/activities/${activityKey}`);
         ref.update(activity);
     }
 }
