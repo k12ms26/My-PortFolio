@@ -214,5 +214,14 @@ input {
 }
 
 .qnabtn {
-  background-color : none;
+  color-adjust : white;
+}
+
+.table{
+  background-color: white;
+}
+
+.plus_mark {
+  height : 30px;
+  /* filter: invert(); */
 }

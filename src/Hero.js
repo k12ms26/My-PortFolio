@@ -3,6 +3,7 @@ import Nav from './Nav';
 import countword from './CountWord';
 import Shop from './Shop';
 import New from './New';
+import AddContext from './addContext';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Question from './question';
 
