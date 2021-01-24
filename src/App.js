@@ -42,6 +42,7 @@ const App = () => {
                         break;
                 }
             });
+
     }
 
     const handleSignup = () => {
@@ -76,14 +77,15 @@ const App = () => {
             }
         });
     }
-
+    console.log(user)
+    var email_result = user.email
     useEffect(() => {
         authListener();
     }, []);
     return (
         <div className="App">
             {user ?(
-                <Hero handleLogout={handleLogout} />
+                <Hero handleLogout={handleLogout} email_login={email_result.split("@")[0]}/>
             ) : (
                 <Login
                 email={email}
@@ -100,7 +102,6 @@ const App = () => {
             
         </div>
     );
-
 };
 
 export default App;

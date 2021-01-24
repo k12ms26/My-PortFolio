@@ -7,12 +7,12 @@ import AddContext from './addContext';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Question from './question';
 
-const Hero = ({handleLogout}) => {
+const Hero = (props) => {
     return (
         <section className="hero">
             <Router>
                 <div className="App">
-                <Nav handleLogout={handleLogout}/>
+                <Nav handleLogout={props.handleLogout} name={props.email_login}/>
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/countword" component={countword} />

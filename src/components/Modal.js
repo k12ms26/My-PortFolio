@@ -107,7 +107,8 @@ export const Modal = ({ showModal, setShowModal }) => {
 
   function sendEmail(e) {
     e.preventDefault();
-
+    setShowModal(prev => !prev)
+    alert("전송 완료")
     emailjs.sendForm('gmail', 'template_adtnacg', e.target, 'user_m2DzYtnjmQ2Uf4uaPcU36')
         .then((result) =>{
             console.log(result.text);
@@ -126,7 +127,7 @@ export const Modal = ({ showModal, setShowModal }) => {
             {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
             <ModalContent>
             <div>
-              <div className="container ">
+              <div className="container">
                   <div className="mailTitle">의견을 말씀해주세요</div>
                   <form onSubmit={sendEmail}>
                       <div className="row pt-5 mx-auto">
@@ -134,10 +135,10 @@ export const Modal = ({ showModal, setShowModal }) => {
                               <input type="text" className="name" placeholder="  Name" name="name" />
                           </div>
                           <div className="col-8 form-group pt-2 mx-auto">
-                              <input type="email" className="form-control" placeholder="  Email Address" name="email" />
+                              <input type="email" className="name" placeholder="  Email Address" name="email" />
                           </div>
                           <div className="col-8 form-group pt-2 mx-auto">
-                              <input type="text" className="form-control" placeholder="  Subject" name="subject" />
+                              <input type="text" className="name" placeholder="  Subject" name="subject" />
                           </div>
                           <div className="col-8 form-group pt-2 mx-auto">
                               <textarea className="sendmessage" id="" cols="30" rows="8" placeholder="  Your message" name="message"></textarea>

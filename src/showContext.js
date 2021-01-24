@@ -6,6 +6,7 @@ import { ContextModal } from './components/ContextModal';
 import { GlobalStyle } from './globalStyles';
 import './App.css';
 import plus_mark from './image/plus_mark.png';
+import { ShowModal } from './components/ShowModal';
 
 const Container = styled.div`
   display: center;
@@ -31,7 +32,7 @@ const Button = styled.button`
 `;
 
 
-const AddContext = (props) => {
+const ShowContext = (props) => {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => {
         setShowModal(prev => !prev);
@@ -39,16 +40,16 @@ const AddContext = (props) => {
     return(
         <>
             <Container>
-                <a onClick={openModal} data-toggle="modal" data-target="#myModal"><img className="plus_mark" src={plus_mark}></img><br></br><text className="newwrite">새 글 쓰기</text></a>
+                <a onClick={openModal} data-toggle="modal" data-target="#myModal"><button className="showwrite">글 보기</button></a>
                 {/* <Button className="qnabtn" onClick={openModal}><img className="plus_mark" src={plus_mark}></img></Button> */}
-                <ContextModal showModal={showModal} setShowModal={setShowModal} addOrEdit={props.addOrEdit} currentId={props.currentId} contactObjects={props.contactObjects}/>
+                <ShowModal showModal={showModal} setShowModal={setShowModal} addOrEdit={props.addOrEdit} current={props.current} id={props.id_result}/>
                 <GlobalStyle />
             </Container>
         </>
     );
 }
 
-export default AddContext;
+export default ShowContext;
 
 
 // function New() {

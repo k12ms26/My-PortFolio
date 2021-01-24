@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { InfoModal } from './components/InfoModal';
 import { GlobalStyle } from './globalStyles';
 import question_mark from './image/question_mark.png';
+import ShowContext from './showContext';
 
 
 const firebaseDb =  fire.database().ref();
@@ -16,6 +17,7 @@ function New() {
     var [contactObjects, setContactObjects] = useState({})
     var [currentId, setCurrentId] = useState('')
     const [comp, setComp] = useState(this)
+    var id_result = null
 
     useEffect(()=>{
         firebaseDb.child('contacts').on('value',snapshot=>{
@@ -115,22 +117,28 @@ function New() {
                 <table className="table table-borderless table-stripped">
                     <thead className="thead-light">
                         <tr>
-                            <th>Full Name</th>
+                            {/* <th>Full Name</th>
                             <th>Mobile</th>
-                            <th>Email</th>
-                            <th>Actions</th>
+                            <th>Email</th> */}
+                            <th>글쓴이</th>
+                            <th>제목</th>
+                            <th></th>
+                            {/* <th>Actions</th> */}
                             <th><AddContext {...({ addOrEdit, currentId, contactObjects })}/></th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             Object.keys(contactObjects).map(id => {
-
+                                var current = contactObjects[id]
+                                var id_result = id
+                                console.log(id_result)
                                 return <tr key={id}>
+                                    {/* <td>{contactObjects[id].fullName}</td> */}
+                                    <td>익명</td>
                                     <td>{contactObjects[id].fullName}</td>
-                                    <td>{contactObjects[id].mobile}</td>
-                                    <td>{contactObjects[id].email}</td>
-                                    <td>
+                                    {/* <td>{contactObjects[id].email}</td> */}
+                                    {/* <td>
                                          {/* <a className="btn text-primary" onClick={() => {<Question />}} data-toggle="modal" data-target="#myModal">
                                             <i className="fas fa-pencil-alt"></i>
                                         </a> */}
@@ -140,10 +148,11 @@ function New() {
                                             <InfoModal showModal={showModal} setShowModal={setShowModal} />
                                             <GlobalStyle />
                                         </Container> */} 
-                                        <a className="btn text-danger" onClick={() => {onDelete(id)}}>
+                                        {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
                                             <i className="fas fa-trash-alt"></i>
                                         </a>
-                                    </td>
+                                    </td> */ }
+                                    <td><ShowContext {...({ addOrEdit, current, id_result })}/></td>
                                 </tr>
                             })
                         }

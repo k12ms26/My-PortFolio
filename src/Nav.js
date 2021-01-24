@@ -11,7 +11,7 @@ import Question from './question';
 
 //const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-const Nav = ({handleLogout}) => {
+const Nav = (props) => {
     // render(){
     //     const {
     //         user,
@@ -47,7 +47,8 @@ const Nav = ({handleLogout}) => {
                     <Link style={navStyle} to="/new">
                         <li>커뮤니티</li>
                     </Link>
-                    <button onClick={handleLogout}>Logout</button> 
+                    <text>어서오세요, {props.name}님!</text>
+                    <button onClick={props.handleLogout}>Logout</button> 
                 </ul>
                 
                 {/* <div>

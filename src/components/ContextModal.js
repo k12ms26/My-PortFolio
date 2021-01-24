@@ -35,10 +35,13 @@ const ModalWrapper = styled.div`
 // `;
 
 const ModalContent = styled.div`
-  //display: flex;
+  display: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width : 150%;
+  height : 100%;
+  align-self : center;
   line-height: 1.8;
   color: #141414;
 
@@ -73,7 +76,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
       duration: 0
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translate(-105%,-25%)` : `translate(-100%,-100%)`
+    transform: showModal ? `translate(-105%, -25%)` : `translate(-100%,-100%)`
     // transform: showModal ? `translateY(0%)` : `translateY(-100%)`
   });
 
@@ -100,6 +103,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
     },
     [keyPress]
   );
+
   const initialFieldValues = {
     fullName : '',
     mobile : '',
@@ -108,7 +112,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
   }
 
   var [values, setValues] = useState(initialFieldValues)
-
+  console.log(values)
   // useEffect(() => {
   //     if(props.currentId=='')
   //         setValues({
@@ -130,8 +134,15 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
   }
 
   const handleFormSubmit = e => {
-      e.preventDefault();
-      addOrEdit(values);
+      if(window.confirm("글을 쓸 경우 수정이 불가능합니다. 계속 하시겠습니까?")){
+        e.preventDefault();
+        // aria-label='Close modal'
+        addOrEdit(values);
+        alert("글 쓰기 완료");
+        setShowModal(prev => !prev)
+        setValues({})
+      }
+
   }
 
   return (
@@ -145,40 +156,45 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
                 {/* <h1>Are you ready?</h1>
                 <p>Get exclusive access to our next launch.</p>
                 <button>Join Now</button> */}
-                <form autoComplete="off" onSubmit={handleFormSubmit}>
-                    <div className="form-group input-group">
-                        <div className="input-group-prepend">
-                            <div className="input-group-text">
-                                <i className="fas fa-user"></i>
-                            </div>
-                        </div>
-                        <input className="form-control" placeholder="Full Name" name="fullName" value={values.fullName} onChange={handleInputChange}/>
-                    </div>
-                    <div className="form-row">
-                        <div className="form-group input-group col-md-6">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">
-                                    <i className="fas fa-mobile-alt"></i>
-                                </div>
-                            </div>
-                            <input className="form-control" placeholder="Mobile" name="mobile" value={values.mobile} onChange={handleInputChange}/>
-                        </div>
-                        <div className="form-group input-group col-md-6">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">
-                                    <i className="fas fa-envelope"></i>
-                                </div>
-                            </div>
-                            <input className="form-control" placeholder="Email" name="email" value={values.email} onChange={handleInputChange}/>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                            <textarea className="form-control" placeholder="Address" name="address" value={values.address} onChange={handleInputChange} />
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" className="sendbtn" value={currentId==''?"Save":"Update"} className="btn btn-primary btn-block" />
-                    </div>
-                </form>
+                <div>
+                  <form autoComplete="off" onSubmit={handleFormSubmit}>
+                      <div className="form-group input-group">
+                          {/* <div className="input-group-prepend">
+                              <div className="input-group-text">
+                                  <i className="fas fa-user"></i>
+                              </div>
+                          </div> */}
+                          <text className="formtext">제목</text>
+                          <input className="addtext" name="fullName" value={values.fullName} onChange={handleInputChange}/>
+                      </div>
+                      <div className="form-row">
+                          <div className="form-group input-group col-md-6">
+                              {/* <div className="input-group-prepend">
+                                  <div className="input-group-text">
+                                      <i className="fas fa-mobile-alt"></i>
+                                  </div>
+                              </div> */}
+                              <text className="formtext">비밀번호</text>
+                              <input type="password" className="addtext" name="mobile" value={values.mobile} onChange={handleInputChange}/>
+                          </div>
+                          {/* <div className="form-group input-group col-md-6">
+                              {/* <div className="input-group-prepend">
+                                  <div className="input-group-text">
+                                      <i className="fas fa-envelope"></i>
+                                  </div>
+                              </div> 
+                              <input className="form-control" placeholder="Email" name="email" value={values.email} onChange={handleInputChange}/>
+                          </div> */}
+                      </div>
+                      <div className="form-group">
+                      <text className="formtext">내용</text>
+                              <textarea className="text" name="address" value={values.address} onChange={handleInputChange} />
+                      </div>
+                      <div className="form-group">
+                          <input type="submit" className="sendbtn" value={currentId==''?"Save":"Update"} />
+                      </div>
+                  </form>
+                </div>
               </ModalContent>
               <CloseModalButton
                 aria-label='Close modal'

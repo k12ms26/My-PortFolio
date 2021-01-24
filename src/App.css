@@ -162,8 +162,8 @@ input {
 .question_mark {
   max-width: 1.8%;
   max-height: 1.8%;
-  margin-left: -105%;
-  /* filter:invert(100%); */
+  margin-left: -100%;
+  filter:invert(100%);
   /* background-size:cover; */
   /* background-image: url("./image/question_mark.png"); */
 }
@@ -172,22 +172,26 @@ input {
   max-width: 15%;
 }
 
-.form-control {
-  width: 80%;
+.addtext {
+  width: 50%;
   border : 5px black;
-  margin-top: 2.5%;
+  /* margin-top: 2.5%; */
   margin-bottom: 0.5%;
-  line-height: 300%;
+  line-height: 100%;
   border-style: solid;
   border-width: 1px;
-  height: auto;
+  align-items: center;
+  margin-left: auto;
+  resize: none;
+  align-self:center;
 }
 
 .sendbtn {
   width : 50%;
+  height : 50px;
   margin-top : 2.5%;
   line-height: 300%;
-  margin-bottom: 2.5%;
+  margin-bottom: 4.5%;
 }
 
 .sendmessage {
@@ -201,7 +205,7 @@ input {
 .name {
   width: 80%;
   border : 5px black;
-  margin-top: 3.5%;
+  margin-top: -4.5%;
   margin-bottom: 0.5%;
   border-style: solid;
   border-width: 1px;
@@ -211,6 +215,7 @@ input {
 
 .mailTitle {
   margin-top: 2.5%;
+
 }
 
 .qnabtn {
@@ -224,4 +229,43 @@ input {
 .plus_mark {
   height : 30px;
   /* filter: invert(); */
+}
+
+/* .container {
+
+} */
+
+.newwrite {
+  font-size : 50%;
+  color : black;
+}
+
+.showwrite {
+  font-size : 50%;
+  color : white;
+}
+
+.formtext {
+  color : black;
+  font-size : 120%;
+  text-align: center;
+}
+
+.text {
+  resize : none;
+
+}
+
+.addComment {
+  float : left;
+}
+
+.addbtn {
+  width:30%;
+  /* 안먹힘 */
+  /* background: #603bbb; */
+}
+
+.stopcomment {
+  color: black;
 }
