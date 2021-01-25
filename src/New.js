@@ -10,7 +10,7 @@ import { InfoModal } from './components/InfoModal';
 import { GlobalStyle } from './globalStyles';
 import question_mark from './image/question_mark.png';
 import ShowContext from './showContext';
-
+import {useHistory} from 'react-router';
 
 const firebaseDb =  fire.database().ref();
 function New() {
@@ -84,7 +84,6 @@ function New() {
     `;
 
     const [showModal, setShowModal] = useState(false);
-
     const openModal = () => {
       setShowModal(prev => !prev);
     };
@@ -92,7 +91,7 @@ function New() {
     // const openModal = () => {
     //     <Question />
     // };
-
+    const history = useHistory();
     return(
         // // <div>
         // //     <h1>New Page</h1>
@@ -113,9 +112,10 @@ function New() {
             {/* <div className="col-md-5">
                     <ContactForm {...({ addOrEdit, currentId, contactObjects })}/>
             </div> */}
-            <div className="col-md-7">
-                <table className="table table-borderless table-stripped">
-                    <thead className="thead-light">
+            <div className="newtable">
+            {/* table-borderless  */}
+                <table className="table table-stripped">
+                    <thead>
                         <tr>
                             {/* <th>Full Name</th>
                             <th>Mobile</th>
@@ -132,7 +132,6 @@ function New() {
                             Object.keys(contactObjects).map(id => {
                                 var current = contactObjects[id]
                                 var id_result = id
-                                console.log(id_result)
                                 return <tr key={id}>
                                     {/* <td>{contactObjects[id].fullName}</td> */}
                                     <td>익명</td>
@@ -153,6 +152,7 @@ function New() {
                                         </a>
                                     </td> */ }
                                     <td><ShowContext {...({ addOrEdit, current, id_result })}/></td>
+                                    {/* onClick={() => {history.push("/context")}}<td><Button onClick={clickgo}>글 보기</Button></td> */}
                                 </tr>
                             })
                         }

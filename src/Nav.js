@@ -20,7 +20,9 @@ const Nav = (props) => {
     //       } = this.props;
     
          const navStyle = {
-             color:'white'
+            color:'white',
+            textDecoration : 'none',
+            fontSize : 'larger'
          };
 
         const [show, setShow] = useState(false);
@@ -30,7 +32,7 @@ const Nav = (props) => {
         return(
             <nav>
                 <Link style={navStyle} to="/">
-                    <h3>제목 뭐할까</h3>
+                    <h3 className="pfh3">My PF</h3>
                 </Link>
                 <Question />
                 {/* { show ? <div onClick={closeModalHandler} className="back-drop"></div> : null }
@@ -38,18 +40,23 @@ const Nav = (props) => {
                 <Modal show={show} close={closeModalHandler}/> */}
                 {/* <button className="question_mark" onClick={"javascript:location.href="+{Modal}}><img className="question_mark2" src={question_mark} /></button> */}
                 <ul className="nav-links">
-                    <Link style={navStyle} to="/countword">
-                        <li>자기소개서 작성</li>
-                    </Link>
+                    {/* <Link style={navStyle} to="/countword">
+                        <ul className="navtext">자기소개서 작성</ul>
+                    </Link> */}
                     <Link style={navStyle} to="/shop">
-                        <li>활동 기록</li>
+                        <ul className="navfirst">대외활동 기록</ul>
+                    </Link>
+                    <Link style={navStyle} to="/countword">
+                        <ul className="navsecond">글자 수 세기</ul>
                     </Link>
                     <Link style={navStyle} to="/new">
-                        <li>커뮤니티</li>
+                        <ul className="navthird">자유 게시판</ul>
                     </Link>
-                    <text>어서오세요, {props.name}님!</text>
-                    <button onClick={props.handleLogout}>Logout</button> 
                 </ul>
+                <text className="navtexttext">어서오세요,  <text className="propsname">{props.name}</text>  님!</text>
+                <Link className="logoutlink" to="/">
+                        <button className="logoutbtn" onClick={props.handleLogout}>Logout</button> 
+                </Link>
                 
                 {/* <div>
                     {

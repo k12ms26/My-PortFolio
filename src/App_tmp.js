@@ -4,6 +4,7 @@ import './App.css';
 import Nav from './Nav';
 import countword from './CountWord';
 import Shop from './Shop';
+import ShowModal from './components/ShowModal'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/countword" component={countword} />
             <Route path="/shop" component={Shop} />
+            <Route path="/context" component={Shop} />
           </Switch>
         </div>
       </Router>

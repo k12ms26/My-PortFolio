@@ -1,6 +1,7 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect, Component} from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import {useHistory} from 'react-router';
 import styled from 'styled-components';
 import { ContextModal } from './components/ContextModal';
 import { GlobalStyle } from './globalStyles';
@@ -31,11 +32,38 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-
+// function ShowContext(props) {
+//     const history = useHistory();
+//     const openModal = () => {
+//         // setShowModal(prev => !prev);
+//         // console.log(props.id_result)
+//         // history.push({
+//         //     pathname: '/context',
+//         //     state: {id:props.id_result}
+//         // })
+//         // history.push({
+//         //     pathname : '/context',
+//         //     // state : {addOrEdit: this.props.addOrEdit, current: this.props.current, id: this.props.id_result}
+//         //     state : {addOrEdit:props.addOrEdit}
+//         // })
+//     };
+//     return(
+//         <>
+//              <Container>
+//                 <a onClick={openModal} data-toggle="modal" data-target="#myModal"><button className="showwrite">글 보기</button></a>
+//                  <Button className="qnabtn" onClick={openModal}><img className="plus_mark" src={plus_mark}></img></Button> 
+//                   <ShowModal showModal={showModal} setShowModal={setShowModal} addOrEdit={this.props.addOrEdit} current={this.props.current} id={this.props.id_result}/>
+//                 <GlobalStyle />
+//             </Container>
+//             {/* <button onClick={() => {props.history.push("/colorselector")}}></button> */}
+//         </>
+//     );
+// }
 const ShowContext = (props) => {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => {
         setShowModal(prev => !prev);
+        // props.history.push('/colorselector')
     };
     return(
         <>
@@ -45,6 +73,7 @@ const ShowContext = (props) => {
                 <ShowModal showModal={showModal} setShowModal={setShowModal} addOrEdit={props.addOrEdit} current={props.current} id={props.id_result}/>
                 <GlobalStyle />
             </Container>
+            {/* <button onClick={() => {props.history.push("/colorselector")}}></button> */}
         </>
     );
 }

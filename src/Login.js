@@ -6,7 +6,8 @@ const Login = (props) => {
     return (
         <section className="login">
             <div className="loginContainer">
-                <label>Username</label>
+                <text className="labelpf">Make Your PortFolio</text>
+                <label className="labelemail">이메일</label>
                 <input
                     type="text"
                     autoFocus
@@ -15,7 +16,7 @@ const Login = (props) => {
                     onChange={(e) => setEmail(e.target.value)}
                     />
                 <p className="errorMsg">{emailError}</p>
-                <label>Password</label>
+                <label className="labelpwd">비밀번호</label>
                 <input type="password"
                 required
                 value={password}
@@ -24,13 +25,13 @@ const Login = (props) => {
                 <div className="btnContainer">
                     {hasAccount ?(
                         <>
-                            <button onClick={handleLogin}>Sign in</button>
-                            <p>Don't have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign up</span></p>
+                            <button onClick={handleLogin}>로그인</button>
+                            <p>계정이 없다면 ? <span onClick={() => setHasAccount(!hasAccount)}>회원가입</span></p>
                         </>
                     ) : (
                         <>
-                            <button onClick={handleSignup}>Sign up</button>
-                            <p>Have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span> </p>
+                            <button onClick={handleSignup}>회원가입</button>
+                            <p>계정이 있다면 ? <span onClick={() => setHasAccount(!hasAccount)}>로그인</span> </p>
                         </>
                     )}
                 </div>
