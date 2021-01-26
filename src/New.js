@@ -114,7 +114,7 @@ function New() {
             </div> */}
             <div className="newtable">
             {/* table-borderless  */}
-                <table className="table table-stripped">
+                <table className="table">
                     <thead>
                         <tr>
                             {/* <th>Full Name</th>
@@ -134,8 +134,9 @@ function New() {
                                 var id_result = id
                                 return <tr key={id}>
                                     {/* <td>{contactObjects[id].fullName}</td> */}
-                                    <td>익명</td>
-                                    <td>{contactObjects[id].fullName}</td>
+                                    <td className="ik">익명</td>
+                                    <td className="fulln">{contactObjects[id].fullName}</td>
+                                    <td></td>
                                     {/* <td>{contactObjects[id].email}</td> */}
                                     {/* <td>
                                          {/* <a className="btn text-primary" onClick={() => {<Question />}} data-toggle="modal" data-target="#myModal">
