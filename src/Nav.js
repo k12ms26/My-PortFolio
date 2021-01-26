@@ -22,7 +22,8 @@ const Nav = (props) => {
     
          const navStyle = {
             color:'white',
-            textDecoration : 'none'
+            textDecoration : 'none',
+            listStyle : 'none'
          };
 
         const [show, setShow] = useState(false);
@@ -53,15 +54,16 @@ const Nav = (props) => {
                     </Link>
                 </ul>
                 <Question name={props.name}>
-                   
                 </Question>
-                <Button className="logoutlink" onClick={props.handleLogout}>
-                    <text>로그아웃</text>
-                    {/* <button className="logoutbtn" onClick={props.handleLogout}>로그아웃</button> */}
-                </Button>
-                {/* <Link className="logoutlink" to="/">
-                    <button className="logoutbtn" onClick={props.handleLogout}></button> 
-                </Link> */}
+                {/* <Button className="logoutlink" onClick={<Link to="/"></Link>}>
+                    <Link to="/"></Link>
+                    <text onClick={props.handleLogout}>로그아웃</text>
+                    <button className="logoutbtn" onClick={props.handleLogout}>로그아웃</button>
+                </Button> */}
+                <Link className="logoutlink" to="/">
+                    {/* <button className="logoutbtn" onClick={props.handleLogout}></button>  */}
+                    <Button className="logoutbtn" onClick={props.handleLogout}><text className="logout">로그아웃</text></Button>
+                </Link>
                 {/* <div>
                     {
                         user 
