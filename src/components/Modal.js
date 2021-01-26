@@ -46,9 +46,11 @@ const ModalContent = styled.div`
   align-items: center;
   //line-height: 1.8;
   color: #141414;
+
   p {
     margin-bottom: 1rem;
   }
+
   button {
     padding: 10px 24px;
     background: #141414;
@@ -76,7 +78,7 @@ export const Modal = ({ showModal, setShowModal }) => {
       duration: 0
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translate(25%,25%)` : `translate(-100%,-100%)`
+    transform: showModal ? `translate(20%,10%)` : `translate(-100%,-100%)`
   });
 
   const closeModal = e => {

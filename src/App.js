@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import fire from './firebaseConfig';
 import './App.css';
 import App_tmp from './App_tmp';
+import Home from './Hero';
 import Hero from './Hero';
 import Nav from './Nav';
 import Login from './Login';
 import Question from './question';
+import {Redirect, useHistory} from 'react-router';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-const App = () => {
+const App = ({history}) => {
     const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +21,7 @@ const App = () => {
 
     const clearInputs = () => {
         setEmail('');
-        setPasswordError('');
+        setPassword('');
     }
 
     const clearErrors = () => {
@@ -62,9 +66,11 @@ const App = () => {
                 }
             });
     }
+    // const history = useHistory();
 
     const handleLogout = () => {
         fire.auth().signOut();
+        
     }
 
     const authListener = () => {
@@ -77,7 +83,6 @@ const App = () => {
             }
         });
     }
-    console.log(user)
     var email_result = user.email
     useEffect(() => {
         authListener();
@@ -99,7 +104,6 @@ const App = () => {
                 emailError={emailError}
                 passwordError={passwordError} />
             )}
-            
         </div>
     );
 };

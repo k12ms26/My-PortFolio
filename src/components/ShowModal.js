@@ -260,7 +260,7 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
                                 <th></th>
                             </tr>
                         </thead> */}
-                  {/* <tbody>
+                        {/* <tbody>
                             {
                                 Object.keys(contactObjects).map(id => {
                                     console.log(id)
@@ -269,10 +269,10 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
                                         <td>{contactObjects[id].mobile}</td>
                                         <td>{contactObjects[id].email}</td>
                                         <td> */}
-                  {/* <a className="btn text-primary" onClick={() => {setCurrentId(id)}}>
+                                            {/* <a className="btn text-primary" onClick={() => {setCurrentId(id)}}>
                                                 <i className="fas fa-pencil-alt"></i>
                                             </a> */}
-                  {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
+                                            {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
                                                 <i className="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
@@ -281,7 +281,7 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
                             }
                         </tbody>
                     </table> */}
-                  {/* <form autoComplete="off">
+                    {/* <form autoComplete="off">
                       <div className="addComment">
                         <text className="formtext">댓글</text>
                         <input className="addtext" name="fullName" value={current.email} onChange={handleInputChange}/>

@@ -23,8 +23,14 @@ export default class About extends Component {
                     <textarea className="countword" value={value} onChange={this.handleChange}></textarea>
                 </form>
                 <br></br>
-                <input type="number" id="result" readOnly value={value.length}></input><text>자</text>
+                <input className="word" id="result" readOnly value={value.length}></input><text className="wordza">자</text>
             </>
         );
     }
 }
+
+// function calc() {
+//     // document.getElementById('result') = 
+// }
+
+//export default About;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState,useEffect} from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 import ContactForm from "./components/ContextModal"
@@ -10,32 +10,32 @@ import { InfoModal } from './components/InfoModal';
 import { GlobalStyle } from './globalStyles';
 import question_mark from './image/question_mark.png';
 import ShowContext from './showContext';
+import {useHistory} from 'react-router';
 
-
-const firebaseDb = fire.database().ref();
+const firebaseDb =  fire.database().ref();
 function New() {
     var [contactObjects, setContactObjects] = useState({})
     var [currentId, setCurrentId] = useState('')
     const [comp, setComp] = useState(this)
     var id_result = null
 
-    useEffect(() => {
-        firebaseDb.child('contacts').on('value', snapshot => {
-            if (snapshot.val() != null)
+    useEffect(()=>{
+        firebaseDb.child('contacts').on('value',snapshot=>{
+            if(snapshot.val() != null)
                 setContactObjects({
                     ...snapshot.val()
                 })
             else
-                setContactObjects({})
+            setContactObjects({})
         })
     }, [])
 
     const addOrEdit = obj => {
-        if (currentId == '')
+        if(currentId=='')
             firebaseDb.child('contacts').push(
                 obj,
                 err => {
-                    if (err) console.log(err)
+                    if(err) console.log(err)
                     else setCurrentId('')
                 }
             )
@@ -43,7 +43,7 @@ function New() {
             firebaseDb.child(`contacts/${currentId}`).set(
                 obj,
                 err => {
-                    if (err) console.log(err)
+                    if(err) console.log(err)
                     else setCurrentId('')
                 }
             )
@@ -51,10 +51,10 @@ function New() {
     }
 
     const onDelete = key => {
-        if (window.confirm('Are you sure to delete this record?')) {
+        if(window.confirm('Are you sure to delete this record?')) {
             firebaseDb.child(`contacts/${key}`).remove(
                 err => {
-                    if (err) console.log(err)
+                    if(err) console.log(err)
                     else setCurrentId('')
                 }
             )
@@ -84,38 +84,38 @@ function New() {
     `;
 
     const [showModal, setShowModal] = useState(false);
-
     const openModal = () => {
-        setShowModal(prev => !prev);
+      setShowModal(prev => !prev);
     };
     // const [showModal, setShowModal] = useState(false);
     // const openModal = () => {
     //     <Question />
     // };
-
-    return (
+    const history = useHistory();
+    return(
         // // <div>
         // //     <h1>New Page</h1>
         // // </div>
         // <>
-        //{hasAccount ?(
-        //             <>
-        //                 <button onClick={handleLogin}>Sign in</button>
-        //                 <p>Don't have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign up</span></p>
-        //             </>
-        //         ) : (
-        //             <>
-        //                 <button onClick={handleSignup}>Sign up</button>
-        //                 <p>Have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span> </p>
-        //             </>
-        //         )}
-        <>
+            //{hasAccount ?(
+            //             <>
+            //                 <button onClick={handleLogin}>Sign in</button>
+            //                 <p>Don't have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign up</span></p>
+            //             </>
+            //         ) : (
+            //             <>
+            //                 <button onClick={handleSignup}>Sign up</button>
+            //                 <p>Have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span> </p>
+            //             </>
+            //         )}
+            <>
             {/* <div className="col-md-5">
                     <ContactForm {...({ addOrEdit, currentId, contactObjects })}/>
             </div> */}
-            <div className="col-md-7">
-                <table className="newtable">
-                    <thead className="thead-light">
+            <div className="newtable">
+            {/* table-borderless  */}
+                <table className="table table-stripped">
+                    <thead>
                         <tr>
                             {/* <th>Full Name</th>
                             <th>Mobile</th>
@@ -124,7 +124,7 @@ function New() {
                             <th>제목</th>
                             <th></th>
                             {/* <th>Actions</th> */}
-                            <th><AddContext {...({ addOrEdit, currentId, contactObjects })} /></th>
+                            <th><AddContext {...({ addOrEdit, currentId, contactObjects })}/></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -132,7 +132,6 @@ function New() {
                             Object.keys(contactObjects).map(id => {
                                 var current = contactObjects[id]
                                 var id_result = id
-                                console.log(id_result)
                                 return <tr key={id}>
                                     {/* <td>{contactObjects[id].fullName}</td> */}
                                     <td>익명</td>
@@ -142,17 +141,18 @@ function New() {
                                          {/* <a className="btn text-primary" onClick={() => {<Question />}} data-toggle="modal" data-target="#myModal">
                                             <i className="fas fa-pencil-alt"></i>
                                         </a> */}
-                                    {/* <Container>
+                                        {/* <Container>
                                             {/* <a onClick={openModal} data-toggle="modal" data-target="#myModal"><img className="question_mark" src={question_mark}></img></a> */}
-                                    {/* <Button className="qnabtn" onClick={openModal}><img className="question_mark" src={question_mark}></img></Button>
+                                            {/* <Button className="qnabtn" onClick={openModal}><img className="question_mark" src={question_mark}></img></Button>
                                             <InfoModal showModal={showModal} setShowModal={setShowModal} />
                                             <GlobalStyle />
-                                        </Container> */}
-                                    {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
+                                        </Container> */} 
+                                        {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
                                             <i className="fas fa-trash-alt"></i>
                                         </a>
                                     </td> */ }
-                                    <td><ShowContext {...({ addOrEdit, current, id_result })} /></td>
+                                    <td><ShowContext {...({ addOrEdit, current, id_result })}/></td>
+                                    {/* onClick={() => {history.push("/context")}}<td><Button onClick={clickgo}>글 보기</Button></td> */}
                                 </tr>
                             })
                         }
@@ -161,8 +161,8 @@ function New() {
                 {/* <button onClick={()=>{setComp(Addcontext)}}>새 글 쓰기</button>
                  */}
             </div>
-
-        </>
+            
+            </>
     );
 }
 
