@@ -13,7 +13,6 @@
   src:url('./fonts/woman.ttf') format("truetype");
 }
 
-
 .App {
   text-align: center;
 }
@@ -32,6 +31,7 @@ nav {
   display: flex;
   align-items: center;
   list-style: none;
+  margin-left: 5%;
 }
 
 * {
@@ -172,6 +172,10 @@ button {
 
 }
 
+Button {
+  color : white;
+}
+
 .word {
   font-family: forcntword;
   width:25%;
@@ -234,9 +238,10 @@ input {
   max-width: 5%;
   max-height: 1.8%;
   float : right;
-  margin-top: 2.5%;
+  margin-top: 1%;
+  margin-right:5%;
+  /* margin-right: -150%; */
   filter:invert(100%);
-  margin-right: -150%;
   /* background-size:cover; */
   /* background-image: url("./image/question_mark.png"); */
 }
@@ -387,49 +392,45 @@ input {
   margin-bottom: 5%;
 }
 
-.navtext {
+/* .navtext {
   font-family: fornav;
-  margin-top: 15%;
+  margin-top: 105px;
   margin-bottom: -5%;
   font-size: 150%;
-}
+} */
 
-/* 이부분 다시 */
 .navfirst {
-  margin:auto;
   font-family: fornav;
   margin-top: 12%;
   width:100%;
+  font-size: larger;
 }
 .navsecond {
-  margin:auto;
   font-family: fornav;
   margin-top: 12%;
   width:100%;
+  font-size: larger;
 }
 .navthird {
-  margin:auto;
   font-family: fornav;
   margin-top: 12%;
   width:100%;
+  font-size: larger;
 }
 
 .navtexttext {
   font-family: fornav;
-  width:30%;
-  margin-top: .5%; 
   font-size: large;
-  text-align: center;
-  margin-right: -72%;
+  text-align: justify;
 }
 
 .pfh3 {
   font-family: forlogin;
   font-weight: bold;
-  width: 150%;
-  margin-left: 30%;
+  width: 250%;
+  margin-left: -10%;
   margin-top: 5%;
-  font-size: 150%;
+  font-size: 300%;
 }
 
 .propsname {
@@ -438,24 +439,21 @@ input {
   font-size: 110%;
 }
 
-
-
-.logoutbtn {
-  margin-left: 84%;
-  margin-top: 2%;
-  height : 50px;
-}
+/* .logoutbtn {
+  width:70%;
+  background: black;
+} */
 
 .logoutlink {
-  width : 70%;
+  width : 50%;
+  background: white;
+  /* height:auto; */
 }
 
-Link {
-  width:85%;
-}
 
 .slider {
   align-self: center;  position: relative;
+  margin-top: 2%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -474,7 +472,7 @@ Link {
   top: 50%;
   right: 32px;
   font-size: 3rem;
-  color: #000;
+  color: white;
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -485,7 +483,7 @@ Link {
   top: 50%;
   left: 32px;
   font-size: 3rem;
-  color: #000;
+  color: white;
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -503,6 +501,7 @@ Link {
 }
 
 footer {
+  font-family: fornav;
   font-weight: lighter;
   font-size : 70%;
   text-align: center;

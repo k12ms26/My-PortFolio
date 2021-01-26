@@ -10,8 +10,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   //height: 100vh;
-  height : 50%;
-  width : 40%;
+  // height : 50%;
+  // width : 40%;
   text-align : center;
   // vertical-align: middle;
 `;
@@ -27,7 +27,12 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-function New() {
+const navStyle = {
+  color:'white',
+  textDecoration : 'none'
+};
+
+function New(props) {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -38,6 +43,7 @@ function New() {
     <>
       <Container>
         <a onClick={openModal} data-toggle="modal" data-target="#myModal"><img className="question_mark" src={question_mark}></img></a>
+        <div className="navtexttext">어서오세요,  <text className="propsname">{props.name}</text>  님!</div>
         {/* <Button className="qnabtn" onClick={openModal}><img className="question_mark" src={question_mark}></img></Button> */}
         <Modal showModal={showModal} setShowModal={setShowModal} />
         <GlobalStyle />

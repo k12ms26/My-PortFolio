@@ -7,6 +7,7 @@ import 'firebase/auth';
 import question_mark from './image/question_mark.png';
 import firebaseConfig from './firebaseConfig';
 import Question from './question';
+import { Button } from '@material-ui/core';
 // import { Modal } from './components/modal/Modal';
 
 //const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -21,8 +22,7 @@ const Nav = (props) => {
     
          const navStyle = {
             color:'white',
-            textDecoration : 'none',
-            fontSize : 'x-large'
+            textDecoration : 'none'
          };
 
         const [show, setShow] = useState(false);
@@ -52,11 +52,16 @@ const Nav = (props) => {
                         <ul className="navthird">자유 게시판</ul>
                     </Link>
                 </ul>
-                <text className="navtexttext">어서오세요,  <text className="propsname">{props.name}</text>  님!</text>
-                <Question />
-                <Link className="logoutlink" to="/">
-                    <button className="logoutbtn" onClick={props.handleLogout}>Logout</button> 
-                </Link>
+                <Question name={props.name}>
+                   
+                </Question>
+                <Button className="logoutlink" onClick={props.handleLogout}>
+                    <text>로그아웃</text>
+                    {/* <button className="logoutbtn" onClick={props.handleLogout}>로그아웃</button> */}
+                </Button>
+                {/* <Link className="logoutlink" to="/">
+                    <button className="logoutbtn" onClick={props.handleLogout}></button> 
+                </Link> */}
                 {/* <div>
                     {
                         user 

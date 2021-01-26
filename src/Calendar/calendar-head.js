@@ -46,6 +46,10 @@ const CalendarHead = props => {
 
     let monthList = rows.map((row, i) => <TableRow key={i}>{row}</TableRow>);
 
+    const navStyle = {
+        color:'white',
+        margin: 'auto'
+     };
     return (
         <TableContainer component={Paper} className="month-selector">
             <Table>

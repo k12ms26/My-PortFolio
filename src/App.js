@@ -66,11 +66,8 @@ const App = ({history}) => {
                 }
             });
     }
-    // const history = useHistory();
-
     const handleLogout = () => {
         fire.auth().signOut();
-        
     }
 
     const authListener = () => {
