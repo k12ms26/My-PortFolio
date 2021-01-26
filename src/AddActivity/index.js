@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
 
 function AddActivity(props) {
     const classes = useStyles();
-    
-    const { authUser,  selectedDay, setOpenSnackbar, setSnackbarMsg } = props;
+
+    const { authUser, selectedDay, setOpenSnackbar, setSnackbarMsg } = props;
     const uid = authUser.uid;
 
     // Set query date for updating database
@@ -36,6 +36,7 @@ function AddActivity(props) {
         name: '',
         type: 1,
         duration: 60,
+        url: '',
         date: queryDate
     }
 
@@ -49,6 +50,7 @@ function AddActivity(props) {
             [name]: value
         });
     }
+
 
     const handleSlider = e => {
         const duration = e.target.getAttribute('aria-valuenow');
@@ -85,6 +87,7 @@ function AddActivity(props) {
                     name="name"
                     onChange={handleChange}
                 />
+
                 <div style={{ marginTop: '20px', marginBottom: '30px' }}>
                     <Typography id="discrete-slider" gutterBottom>
                         종류
@@ -118,6 +121,19 @@ function AddActivity(props) {
                     style={{ marginBottom: '20px' }}
                 />
             </FormControl>
+
+            <TextField
+                style={{ marginTop: '5px' }}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                label="URL(없을 시 . 입력)"
+                value={activity.url}
+                name="url"
+                onChange={handleChange}
+            />
+
             <Button
                 type="submit"
                 fullWidth
