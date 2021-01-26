@@ -1,24 +1,27 @@
 import React from 'react';
 import Nav from './Nav';
-import About from './About';
+import countword from './CountWord';
 import Shop from './Shop';
 import New from './New';
+import AddContext from './addContext';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Question from './question';
 
-const Hero = ({handleLogout}) => {
+const Hero = (props) => {
     return (
         <section className="hero">
             <Router>
                 <div className="App">
-                <Nav handleLogout={handleLogout}/>
+                <Nav handleLogout={props.handleLogout} name={props.email_login}/>
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/about" component={About} />
+                    <Route path="/countword" component={countword} />
                     <Route path="/shop" component={Shop} />
                     <Route path="/new" component={New} />
                 </Switch>
                 </div>
             </Router>
+            
         </section>
     )
 }

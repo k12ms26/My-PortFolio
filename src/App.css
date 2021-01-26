@@ -123,17 +123,16 @@ button {
   );
 }
 
-textarea {
-  width : 50%;
+.countword {
+  width : 70%;
   height: 500px;
-  border: 5px solid #603bbb;
-  border-radius: 0.25rem;
   resize: none;
+  background-color : lightgray;
+  color:white;
 }
 
 text {
   color : white;
-  
 }
 
 input {
@@ -158,4 +157,118 @@ input {
   width: 86px;
   padding: 8px 0;
   background: #3a2b58;
+}
+
+.question_mark {
+  max-width: 1.8%;
+  max-height: 1.8%;
+  margin-left: -100%;
+  filter:invert(100%);
+  /* background-size:cover; */
+  /* background-image: url("./image/question_mark.png"); */
+}
+
+.question_mark2 {
+  max-width: 15%;
+}
+
+.addtext {
+  width: 50%;
+  border : 5px black;
+  /* margin-top: 2.5%; */
+  margin-bottom: 0.5%;
+  line-height: 100%;
+  border-style: solid;
+  border-width: 1px;
+  align-items: center;
+  margin-left: auto;
+  resize: none;
+  align-self:center;
+}
+
+.sendbtn {
+  width : 50%;
+  height : 50px;
+  margin-top : 2.5%;
+  line-height: 300%;
+  margin-bottom: 4.5%;
+}
+
+.sendmessage {
+  width : 80%;
+  height : auto;
+  resize: none;
+  margin-top : 2.5%;
+  line-height: 200%;
+}
+
+.name {
+  width: 80%;
+  border : 5px black;
+  margin-top: -4.5%;
+  margin-bottom: 0.5%;
+  border-style: solid;
+  border-width: 1px;
+  line-height: 300%;
+  height: auto;
+}
+
+.mailTitle {
+  margin-top: 2.5%;
+
+}
+
+.qnabtn {
+  color-adjust : white;
+}
+
+.table{
+  background-color: white;
+}
+
+.plus_mark {
+  height : 30px;
+  /* filter: invert(); */
+}
+
+/* .container {
+} */
+
+.newwrite {
+  font-size : 50%;
+  color : black;
+}
+
+.showwrite {
+  font-size : 50%;
+  color : white;
+}
+
+.formtext {
+  color : black;
+  font-size : 120%;
+  text-align: center;
+}
+
+.text {
+  resize : none;
+
+}
+
+.addComment {
+  float : left;
+}
+
+.addbtn {
+  width:30%;
+  /* 안먹힘 */
+  /* background: #603bbb; */
+}
+
+.stopcomment {
+  color: black;
+}
+.newtable {
+  margin: auto;
+  background-color: white;
 }

@@ -24,6 +24,7 @@ function ActivityList(props) {
             duration: null,
             type: null,
             name: null,
+            url: null,
         };
 
         firebase.database().ref(authUser.uid).child(activityKey).remove();
@@ -57,13 +58,14 @@ function ActivityList(props) {
                                     <TableCell>활동명</TableCell>
                                     <TableCell>종류</TableCell>
                                     <TableCell>중요도</TableCell>
+                                    <TableCell>URL</TableCell>
                                     <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {
                                     Object.values(activities).map((activity, i) => {
-                                        let { name, type, duration } = activity;
+                                        let { name, type, duration, url } = activity;
                                         switch (activity.type) {
                                             case 1:
                                                 type = "자소서";
@@ -82,6 +84,7 @@ function ActivityList(props) {
                                                 <TableCell>{name}</TableCell>
                                                 <TableCell>{type}</TableCell>
                                                 <TableCell>{duration}</TableCell>
+                                                <TableCell>{url}</TableCell>
                                                 <TableCell>
                                                     <DeleteIcon
                                                         onClick={e => deleteActivity(i)}
