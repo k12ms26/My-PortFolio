@@ -22,7 +22,7 @@ const Nav = (props) => {
          const navStyle = {
             color:'white',
             textDecoration : 'none',
-            fontSize : 'larger'
+            fontSize : 'x-large'
          };
 
         const [show, setShow] = useState(false);
@@ -34,7 +34,6 @@ const Nav = (props) => {
                 <Link style={navStyle} to="/">
                     <h3 className="pfh3">My PF</h3>
                 </Link>
-                <Question />
                 {/* { show ? <div onClick={closeModalHandler} className="back-drop"></div> : null }
                 <button className="btn-openModal" onClick={() => setShow(true)}>Open Modal</button>
                 <Modal show={show} close={closeModalHandler}/> */}
@@ -54,10 +53,10 @@ const Nav = (props) => {
                     </Link>
                 </ul>
                 <text className="navtexttext">어서오세요,  <text className="propsname">{props.name}</text>  님!</text>
+                <Question />
                 <Link className="logoutlink" to="/">
-                        <button className="logoutbtn" onClick={props.handleLogout}>Logout</button> 
+                    <button className="logoutbtn" onClick={props.handleLogout}>Logout</button> 
                 </Link>
-                
                 {/* <div>
                     {
                         user 

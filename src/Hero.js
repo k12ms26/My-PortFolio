@@ -9,6 +9,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Question from './question';
 import ImageSlider from './components/ImageSlider';
 import {SliderData} from './components/SliderData'
+import Footer from './common/footer';
+import NotFound from './components/notFound'
 
 const Hero = (props) => {
     console.log(props.handleLogout)
@@ -23,11 +25,10 @@ const Hero = (props) => {
                     <Route path="/shop" component={Shop} />
                     <Route path="/new" component={New} />
                     <Route path="/context" component={ShowModal} />
-                    
+                    <Route path = "/*" component = {NotFound} />
                 </Switch>
                 </div>
             </Router>
-            
         </section>
     )
 }
@@ -35,6 +36,7 @@ const Hero = (props) => {
 const Home = () => (
     <div>
       <ImageSlider slides={SliderData} />;
+      <Footer />
     </div>
 )
 
