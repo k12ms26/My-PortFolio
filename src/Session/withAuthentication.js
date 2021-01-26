@@ -19,9 +19,9 @@ const withAuthentication = Component => {
       });
     };
 
-    componentWillUnmount() {
-      this.authListener();
-    }
+    // componentWillUnmount() {
+    //   this.authListener();
+    // }
 
     render() {
       return (
