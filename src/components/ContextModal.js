@@ -76,7 +76,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
       duration: 0
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translate(-105%, -25%)` : `translate(-100%,-100%)`
+    transform: showModal ? `translate(-180%, -50%)` : `translate(-100%,-100%)`
     // transform: showModal ? `translateY(0%)` : `translateY(-100%)`
   });
 
@@ -113,18 +113,6 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
   }
 
   var [values, setValues] = useState(initialFieldValues)
-  console.log(values)
-  // useEffect(() => {
-  //     if(props.currentId=='')
-  //         setValues({
-  //             ...initialFieldValues
-  //         })
-  //     else
-  //         setValues({
-  //             ...props.contactObjects[props.currentId]
-  //         })
-      
-  // }, [props.currentId, props.contactObjects])
 
   const handleInputChange = e => {
       var { name, value} = e.target
@@ -135,6 +123,19 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
   }
 
   const handleFormSubmit = e => {
+    if(values.fullName == '') {
+      alert("제목을 입력하세요")
+      e.preventDefault();
+    }
+    else if(values.mobile == '') {
+      alert("비밀번호를 입력하세요")
+      e.preventDefault();
+    }
+    else if(values.address == '') {
+      alert("내용을 입력하세요")
+      e.preventDefault();
+    }
+    else {
       if(window.confirm("글을 쓸 경우 수정이 불가능합니다. 계속 하시겠습니까?")){
         e.preventDefault();
         // aria-label='Close modal'
@@ -143,7 +144,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
         setShowModal(prev => !prev)
         setValues({})
       }
-
+    }
   }
 
   return (
@@ -158,7 +159,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
                 <p>Get exclusive access to our next launch.</p>
                 <button>Join Now</button> */}
                 <div>
-                  <form autoComplete="off" onSubmit={handleFormSubmit}>
+                  <form className="addform" autoComplete="off" onSubmit={handleFormSubmit}>
                       <div className="form-group input-group">
                           {/* <div className="input-group-prepend">
                               <div className="input-group-text">
@@ -176,7 +177,7 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
                                   </div>
                               </div> */}
                               <text className="formtext">비밀번호</text>
-                              <input type="password" className="addtext" name="mobile" value={values.mobile} onChange={handleInputChange}/>
+                              <input type="password" className="addtext" name="mobile" placeholder="숫자 네 자리" value={values.mobile} onChange={handleInputChange}/>
                           </div>
                           {/* <div className="form-group input-group col-md-6">
                               {/* <div className="input-group-prepend">
@@ -188,10 +189,9 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
                           </div> */}
                       </div>
                       <div className="form-group">
-                      <text className="formtext">내용</text>
-                              <textarea className="text" name="address" value={values.address} onChange={handleInputChange} />
+                        <textarea className="text" name="address" value={values.address} onChange={handleInputChange} />
                       </div>
-                      <div className="form-group">
+                      <div>
                           <input type="submit" className="sendbtn" value={currentId==''?"Save":"Update"} />
                       </div>
                   </form>

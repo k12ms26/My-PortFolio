@@ -5,6 +5,7 @@ import { MdClose } from 'react-icons/md';
 import modalimg from '../components/modal.jpg';
 import emailjs from 'emailjs-com';
 import '../App.css';
+import Draggable from 'react-draggable';
 
 const Background = styled.div`
   width: 100%;
@@ -67,7 +68,7 @@ const CloseModalButton = styled(MdClose)`
   width: 32px;
   height: 32px;
   padding: 0;
-  z-index: 10;
+  z-index: 1;
 `;
 
 export const Modal = ({ showModal, setShowModal }) => {
@@ -78,7 +79,7 @@ export const Modal = ({ showModal, setShowModal }) => {
       duration: 0
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translate(-45%,25%)` : `translate(-100%,-100%)`
+    transform: showModal ? `translate(-45%,30%)` : `translate(-100%,-100%)`
   });
 
   const closeModal = e => {
@@ -107,57 +108,67 @@ export const Modal = ({ showModal, setShowModal }) => {
 
   function sendEmail(e) {
     e.preventDefault();
-    setShowModal(prev => !prev)
-    alert("전송 완료")
-    emailjs.sendForm('gmail', 'template_adtnacg', e.target, 'user_m2DzYtnjmQ2Uf4uaPcU36')
-        .then((result) =>{
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
-        e.target.reset()
+    if(e.target.message.value == '' ) {
+      alert("메시지를 입력해주세요")
+    } else if(e.target.subject.value == '') {
+      alert("제목을 입력해주세요")
+    } else {
+      setShowModal(prev => !prev)
+      alert("전송 완료")
+      emailjs.sendForm('gmail', 'template_adtnacg', e.target, 'user_m2DzYtnjmQ2Uf4uaPcU36')
+          .then((result) =>{
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+          e.target.reset()
+    }
+
 }
 
   return (
     <>
     {showModal ? (
-      <Background onClick={closeModal} ref={modalRef}>
-        <animated.div style={animation}>
-          <ModalWrapper showModal={showModal}>
-            {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
-            <ModalContent>
-            <div>
-              <div className="container">
-                  <div className="mailTitle">의견을 말씀해주세요</div>
-                  <form onSubmit={sendEmail}>
-                      <div className="row pt-5 mx-auto">
-                          <div className="col-8 form-group mx-auto">
-                              <input type="text" className="name" placeholder="  Name" name="name" />
-                          </div>
-                          <div className="col-8 form-group pt-2 mx-auto">
-                              <input type="email" className="name" placeholder="  Email Address" name="email" />
-                          </div>
-                          <div className="col-8 form-group pt-2 mx-auto">
-                              <input type="text" className="name" placeholder="  Subject" name="subject" />
-                          </div>
-                          <div className="col-8 form-group pt-2 mx-auto">
-                              <textarea className="sendmessage" id="" cols="30" rows="8" placeholder="  Your message" name="message"></textarea>
-                          </div>
-                          <div className="col-8 pt-3 mx-auto">
-                              <input type="submit" className="sendbtn" value="Send Message" />
-                          </div>
-                      </div>
-                  </form>
-              </div>
-          </div>
-            </ModalContent>
-            <CloseModalButton
-              aria-label='Close modal'
-              onClick={() => setShowModal(prev => !prev)}
-            />
-          </ModalWrapper>
-        </animated.div>
-      </Background>
+      <Draggable>
+        <Background onClick={closeModal} ref={modalRef}>
+          <animated.div style={animation}>
+            <ModalWrapper showModal={showModal}>
+              {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
+              <ModalContent>
+              <div>
+                <div className="container">
+                    <div className="mailTitle">의견을 말씀해주세요</div>
+                    <form onSubmit={sendEmail}>
+                        <div className="row pt-5 mx-auto">
+                            {/* <div className="col-8 form-group mx-auto">
+                                <input type="text" className="name" placeholder="  이름" name="name" />
+                            </div>
+                            <div className="col-8 form-group pt-2 mx-auto">
+                                <input type="email" className="name" placeholder="  example@gmail.com" name="email" />
+                            </div> */}
+                            <div className="col-8 form-group pt-2 mx-auto">
+                                <input type="text" className="name" placeholder="  제목" name="subject" />
+                            </div>
+                            <div className="col-8 form-group pt-2 mx-auto">
+                                <textarea className="sendmessage" id="" cols="30" rows="8" placeholder="  내용" name="message"></textarea>
+                            </div>
+                            <div className="col-8 pt-3 mx-auto">
+                                <input type="submit" className="sendsendbtn" value="전송" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+              </ModalContent>
+              <CloseModalButton
+                aria-label='Close modal'
+                onClick={() => setShowModal(prev => !prev)}
+              />
+            </ModalWrapper>
+          </animated.div>
+        </Background>
+      </Draggable>
+
     ) : null}
   </>
   );

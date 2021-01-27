@@ -7,6 +7,7 @@ import fire from '../firebaseConfig'
 import firebase from 'firebase'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Draggable, {} from 'react-draggable';
 
 const Background = styled.div`
   width: 100%;
@@ -24,7 +25,7 @@ const ModalWrapper = styled.div`
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
-  display: grid;
+  // display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
   z-index: 10;
@@ -41,9 +42,7 @@ const ModalWrapper = styled.div`
 const ModalContent = styled.div`
   display: absolute;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width : 150%;
+  width : 100%;
   height : 100%;
   align-self : center;
   line-height: 1.8;
@@ -69,6 +68,7 @@ const CloseModalButton = styled(MdClose)`
   padding: 0;
   z-index: 10;
 `;
+
 const firebaseDb = fire.database().ref();
 export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) => {
   const modalRef = useRef();
@@ -78,7 +78,7 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
       duration: 0
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translate(-105%, -25%)` : `translate(-100%,-100%)`
+    transform: showModal ? `translate(-180%, -80%)` : `translate(-100%,-100%)`
     // transform: showModal ? `translateY(0%)` : `translateY(-100%)`
   });
 
@@ -193,7 +193,26 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
     if (window.confirm('글을 삭제하시겠습니까?')) {
       var input = prompt("비밀번호를 입력하세요")
       if (input == contactObjects[key].mobile) {
-        firebaseDb.child(`contacts/${key}`).remove(
+        firebaseDb.child(`contacts/${id}/commit/${key}`).remove(
+          err => {
+            if (err) console.log(err)
+            else setCurrentId('')
+          }
+        )
+        alert("삭제 완료")
+      }
+      else {
+        alert("비밀번호가 틀립니다")
+      }
+    }
+  }
+
+  //이부분!!!!!!
+  const onDeleteComment = key => {
+    if (window.confirm('댓글을 삭제하시겠습니까?')) {
+      var input = prompt("비밀번호를 입력하세요")
+      if (input == commitObjects[key].password) {
+        firebaseDb.child(`contacts/${contactObjects.key}/commit/${key}`).remove(
           err => {
             if (err) console.log(err)
             else setCurrentId('')
@@ -210,15 +229,18 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
 
 
   const defaultActivity = {
-    name: ''
+    name: '',
+    password: ''
   }
 
   const [activity, setActivity] = useState(defaultActivity);
+  // const [activitypwd, setActivitypwd] = useState(defaultActivity);
 
   const handleChange = e => {
     const { name, value } = e.target
     setActivity({
       ...activity,
+      //...activitypwd,
       [name]: value
     });
   }
@@ -226,167 +248,98 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
   const updates = {};
   //updates['contacts/' + id + '/' + ]
   const handleSubmit = () => {
-    firebase.database().ref("contacts").child(id).child("commit").push(activity);
-    setActivity(defaultActivity);
+    if(activity.password == '') {
+      alert("비밀번호를 입력하세요")
+    }
+    else {
+      firebase.database().ref("contacts").child(id).child("commit").push(activity);
+      setActivity(defaultActivity);
+    }
     // Show notification
 
   }
-  console.log(current)
 
   return (
     <>
       {showModal ? (
-        <Background onClick={closeModal} ref={modalRef}>
-          <animated.div style={animation}>
-            <ModalWrapper showModal={showModal}>
-              {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
-              <ModalContent>
-                {/* <h1>Are you ready?</h1>
-                <p>Get exclusive access to our next launch.</p>
-                <button>Join Now</button> */}
-                <div>
+        <Draggable>
+          <Background onClick={closeModal} ref={modalRef}>
+            <animated.div style={animation}>
+              <ModalWrapper showModal={showModal}>
+                {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
+                <ModalContent>
+                  {/* <h1>Are you ready?</h1>
+                  <p>Get exclusive access to our next launch.</p>
+                  <button>Join Now</button> */}
+                  <br></br>
                   <div>
-                    {current.fullName}
-                  </div>
-                  <div>
-                    {current.address}
-                  </div>
-                  {/* <table className="table table-borderless table-stripped">
-                        <thead className="thead-light">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead> */}
-                        {/* <tbody>
-                            {
-                                Object.keys(contactObjects).map(id => {
-                                    console.log(id)
-                                    return <tr key={id}>
-                                        <td>{contactObjects[id].fullName}</td>
-                                        <td>{contactObjects[id].mobile}</td>
-                                        <td>{contactObjects[id].email}</td>
-                                        <td> */}
-                                            {/* <a className="btn text-primary" onClick={() => {setCurrentId(id)}}>
-                                                <i className="fas fa-pencil-alt"></i>
-                                            </a> */}
-                                            {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
-                                                <i className="fas fa-trash-alt"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                })
-                            }
-                        </tbody>
-                    </table> */}
-                    {/* <form autoComplete="off">
-                      <div className="addComment">
-                        <text className="formtext">댓글</text>
-                        <input className="addtext" name="fullName" value={current.email} onChange={handleInputChange}/>
-                        <button className="addbtn">등록</button>
+                    <div className="showtitle">
+                      <div className="title">
+                        제목
                       </div>
-                    </form> */}
-                  <button onClick={() => { onDelete(id) }}>
-                    글 삭제
-                      </button>
+                      {current.fullName}
+                      <a className="trash" onClick={() => onDelete(id)}>
+                      <i className="fas fa-trash-alt"></i>
+                      </a>
+                    </div>
+                    <br></br>
+                    <div className="showcontent">
+                      {current.address}
+                    </div>
+                    <br></br>
+                    <div className="comments">
+                      <div>
+                        <text className="showshowcomment">댓글</text>
+                        <input className="showtext" name="name" value={activity.name} onChange={handleChange}/>
+                        <text className="showcommentpwd">비밀번호</text>
+                        <input className="showpwdtext" name="password" value={activity.password} onChange={handleChange}/>
+                      </div>
+                      <div>
 
-                  <TextField
-                    style={{ marginTop: '5px' }}
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="댓글"
-                    value={activity.name}
-                    name="name"
-                    onChange={handleChange}
-                  />
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSubmit}
-                    disabled={isValid}
-                  >
-                    저장
-                  </Button>
-                  <div>
-                    <table className="commit-table">
-                      
-                      <tbody>
-                        {
-                          Object.keys(commitObjects).map(uid => {
-                            return <tr key={uid}>
-                              <td>{commitObjects[uid].name}</td>
-                            </tr>
-                          })
-                        }
-                      </tbody>
-                    </table>
+                      </div>
+                    </div>
+
+                    <Button
+                      style={{ marginTop: '1%', width:'80%' }}
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      onClick={handleSubmit}
+                      disabled={isValid}
+                      className="showadd"
+                    >
+                      저장
+                    </Button>
+                    <div>
+                      <table className="commit-table">
+                        <tbody>
+                          {
+                            Object.keys(commitObjects).map(uid => {
+                              return <tr key={uid}>
+                                <td className="showname">익명</td>
+                                <td className="showcom">{commitObjects[uid].name}</td>
+                                <td>
+                                  <a className="trashcomment" onClick={() => onDeleteComment(uid)}>
+                                    <i className="fas fa-trash-alt"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            })
+                          }
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </div>
+                </ModalContent>
+                <CloseModalButton
+                  aria-label='Close modal'
+                  onClick={() => setShowModal(prev => !prev)}
+                />
+              </ModalWrapper>
+            </animated.div>
+          </Background>
+        </Draggable>
 
-                {/* <table className="table table-borderless table-stripped">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Mobile</th>
-                            <th>Email</th>
-                            <th>Address</th> */}
-                {/* <th>Actions</th> */}
-                {/* <th><AddContext {...({ addOrEdit, currentId, contactObjects })}/></th> */}
-                {/* </tr>
-                    </thead>
-                    <tbody>
-                        {
-                          <tr>
-                            <td>{current.fullName}</td>
-                            <td>{current.mobile}</td>
-                            <td>{current.email}</td>
-                            <td>{current.address}</td>
-                            <td> */}
-                {/* <a className="btn text-primary" onClick={() => {setCurrentId(current)}} data-toggle="modal" data-target="#myModal">
-                                        <i className="fas fa-pencil-alt"></i>
-                                    </a> */}
-                {/* <Container>
-                                        <a onClick={openModal} data-toggle="modal" data-target="#myModal"><img className="question_mark" src={question_mark}></img></a>
-                                        <Button className="qnabtn" onClick={openModal}><img className="question_mark" src={question_mark}></img></Button>
-                                        <InfoModal showModal={showModal} setShowModal={setShowModal} />
-                                        <GlobalStyle />
-                                    </Container>  */}
-                {/* <a className="btn text-danger" onClick={() => {onDelete(id)}}>
-                                        <i className="fas fa-trash-alt"></i>
-                                    </a> */}
-                {/* </td>
-                          </tr> */}
-
-                {/* Object.keys(contactObjects).map(id =>  */}
-                {
-                        //     return <tr key={id}>
-                        //         <td>{contactObjects[id].fullName}</td>
-                        //         <td>{contactObjects[id].mobile}</td>
-                        //         <td>{contactObjects[id].email}</td>
-
-                        //         {/* <td><ShowContext {...({ addOrEdit, currentId, contactObjects })}/></td> */}
-                        //     </tr>
-                        // })
-
-                //         }
-                //     </tbody>
-                // </table>
-                /* <button onClick={()=>{setComp(Addcontext)}}>새 글 쓰기</button>
-                 */}
-              </ModalContent>
-              <CloseModalButton
-                aria-label='Close modal'
-                onClick={() => setShowModal(prev => !prev)}
-              />
-            </ModalWrapper>
-          </animated.div>
-        </Background>
       ) : null}
     </>
   );
