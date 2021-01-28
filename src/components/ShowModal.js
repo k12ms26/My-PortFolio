@@ -212,7 +212,7 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
     if (window.confirm('댓글을 삭제하시겠습니까?')) {
       var input = prompt("비밀번호를 입력하세요")
       if (input == commitObjects[key].password) {
-        firebaseDb.child(`contacts/${contactObjects.key}/commit/${key}`).remove(
+        firebaseDb.child(`contacts/${id}/commit/${key}`).remove(
           err => {
             if (err) console.log(err)
             else setCurrentId('')

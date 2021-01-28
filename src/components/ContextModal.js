@@ -3,6 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import '../App.css'
+import Draggable, {} from 'react-draggable';
 
 const Background = styled.div`
   width: 100%;
@@ -150,60 +151,63 @@ export const ContextModal = ({ showModal, setShowModal, addOrEdit, currentId, co
   return (
     <>
       {showModal ? (
-        <Background onClick={closeModal} ref={modalRef}>
-          <animated.div style={animation}>
-            <ModalWrapper showModal={showModal}>
-              {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
-              <ModalContent>
-                {/* <h1>Are you ready?</h1>
-                <p>Get exclusive access to our next launch.</p>
-                <button>Join Now</button> */}
-                <div>
-                  <form className="addform" autoComplete="off" onSubmit={handleFormSubmit}>
-                      <div className="form-group input-group">
-                          {/* <div className="input-group-prepend">
-                              <div className="input-group-text">
-                                  <i className="fas fa-user"></i>
-                              </div>
-                          </div> */}
-                          <text className="formtext">제목</text>
-                          <input className="addtext" name="fullName" value={values.fullName} onChange={handleInputChange}/>
-                      </div>
-                      <div className="form-row">
-                          <div className="form-group input-group col-md-6">
-                              {/* <div className="input-group-prepend">
-                                  <div className="input-group-text">
-                                      <i className="fas fa-mobile-alt"></i>
-                                  </div>
-                              </div> */}
-                              <text className="formtext">비밀번호</text>
-                              <input type="password" className="addtext" name="mobile" placeholder="숫자 네 자리" value={values.mobile} onChange={handleInputChange}/>
-                          </div>
-                          {/* <div className="form-group input-group col-md-6">
-                              {/* <div className="input-group-prepend">
-                                  <div className="input-group-text">
-                                      <i className="fas fa-envelope"></i>
-                                  </div>
-                              </div> 
-                              <input className="form-control" placeholder="Email" name="email" value={values.email} onChange={handleInputChange}/>
-                          </div> */}
-                      </div>
-                      <div className="form-group">
-                        <textarea className="text" name="address" value={values.address} onChange={handleInputChange} />
-                      </div>
-                      <div>
-                          <input type="submit" className="sendbtn" value={currentId==''?"Save":"Update"} />
-                      </div>
-                  </form>
-                </div>
-              </ModalContent>
-              <CloseModalButton
-                aria-label='Close modal'
-                onClick={() => setShowModal(prev => !prev)}
-              />
-            </ModalWrapper>
-          </animated.div>
-        </Background>
+        <Draggable>
+          <Background onClick={closeModal} ref={modalRef}>
+            <animated.div style={animation}>
+              <ModalWrapper showModal={showModal}>
+                {/* <ModalImg src={require('./modal.jpg')} alt='camera' /> */}
+                <ModalContent>
+                  {/* <h1>Are you ready?</h1>
+                  <p>Get exclusive access to our next launch.</p>
+                  <button>Join Now</button> */}
+                  <div>
+                    <form className="addform" autoComplete="off" onSubmit={handleFormSubmit}>
+                        <div className="form-group input-group">
+                            {/* <div className="input-group-prepend">
+                                <div className="input-group-text">
+                                    <i className="fas fa-user"></i>
+                                </div>
+                            </div> */}
+                            <text className="formtext">제목</text>
+                            <input className="addtext" name="fullName" value={values.fullName} onChange={handleInputChange}/>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group input-group col-md-6">
+                                {/* <div className="input-group-prepend">
+                                    <div className="input-group-text">
+                                        <i className="fas fa-mobile-alt"></i>
+                                    </div>
+                                </div> */}
+                                <text className="formtext">비밀번호</text>
+                                <input type="password" className="addtext" name="mobile" placeholder="숫자 네 자리" value={values.mobile} onChange={handleInputChange}/>
+                            </div>
+                            {/* <div className="form-group input-group col-md-6">
+                                {/* <div className="input-group-prepend">
+                                    <div className="input-group-text">
+                                        <i className="fas fa-envelope"></i>
+                                    </div>
+                                </div> 
+                                <input className="form-control" placeholder="Email" name="email" value={values.email} onChange={handleInputChange}/>
+                            </div> */}
+                        </div>
+                        <div className="form-group">
+                          <textarea className="text" name="address" value={values.address} onChange={handleInputChange} />
+                        </div>
+                        <div>
+                            <input type="submit" className="sendbtn" value={currentId==''?"Save":"Update"} />
+                        </div>
+                    </form>
+                  </div>
+                </ModalContent>
+                <CloseModalButton
+                  aria-label='Close modal'
+                  onClick={() => setShowModal(prev => !prev)}
+                />
+              </ModalWrapper>
+            </animated.div>
+          </Background>
+        </Draggable>
+
       ) : null}
     </>
   );

@@ -333,7 +333,7 @@ input {
   font-family: forlogin;
   font-size: x-large;
   color : white;
-  /* border-right: 1px solid white; */
+  border-right: 1px solid white;
 }
 
 .fulln {
@@ -378,7 +378,7 @@ input {
   font-family: forlogin;
   font-size : 110%;
   color : white;
-  width: 50%;
+  width: 70%;
   border-radius: 5%;
   padding : 1%;
   margin-top: 3%;
