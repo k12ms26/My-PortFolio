@@ -193,7 +193,7 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
     if (window.confirm('글을 삭제하시겠습니까?')) {
       var input = prompt("비밀번호를 입력하세요")
       if (input == contactObjects[key].mobile) {
-        firebaseDb.child(`contacts/${id}/commit/${key}`).remove(
+        firebaseDb.child(`contacts/${key}`).remove(
           err => {
             if (err) console.log(err)
             else setCurrentId('')
@@ -292,7 +292,7 @@ export const ShowModal = ({ showModal, setShowModal, addOrEdit, current, id }) =
                         <text className="showshowcomment">댓글</text>
                         <input className="showtext" name="name" value={activity.name} onChange={handleChange}/>
                         <text className="showcommentpwd">비밀번호</text>
-                        <input className="showpwdtext" name="password" value={activity.password} onChange={handleChange}/>
+                        <input type="password" className="showpwdtext" name="password" value={activity.password} placeholder="숫자 네자리" onChange={handleChange}/>
                       </div>
                       <div>
 

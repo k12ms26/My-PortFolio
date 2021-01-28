@@ -289,6 +289,7 @@ input {
   resize: none;
   margin-top : 2.5%;
   line-height: 200%;
+  padding : 1%;
 }
 
 .name {
@@ -301,6 +302,7 @@ input {
   border-width: 1px;
   line-height: 300%;
   height: auto;
+  padding : 1%;
 }
 
 .mailTitle {
@@ -645,7 +647,8 @@ footer {
   font-family: fornav;
   line-height: 200%;
   padding : 1%;
-  width: 10%;
+  width: 12%;
+  text-align: center;
   height: 30px;
   border : 5px black;
   margin-bottom: 0.5%;
