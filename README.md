@@ -3,15 +3,15 @@
 ### 사용한 프로그래밍 언어: React.js
 ### SaaS 사용 (Firebase)
 
-- React.js 기반 '나만의 포트폴리오 공간 만들기' 웹 서비스 개발
-- Firebase를 이용한 로그인, 회원가입 등 DB 설계
-- 캘린더 api를 불러와 TodoList CRUD 구현
-- 커뮤니티 게시판 (게시글, 댓글) CRUD 구현
-- EmailJS를 이용한 문의 메일 보내기 구현
-- Material UI를 사용하여 스타일링 강화
+- [X] React.js 기반 '나만의 포트폴리오 공간 만들기' 웹 서비스 개발
+- [X] Firebase를 이용한 로그인, 회원가입 등 DB 설계
+- [X] 캘린더 api를 불러와 TodoList CRUD 구현
+- [X] 커뮤니티 게시판 (게시글, 댓글) CRUD 구현
+- [X] EmailJS를 이용한 문의 메일 보내기 구현
+- [X] Material UI를 사용하여 스타일링 강화
 <br>
 
-- 구현 페이지
+- [X] 구현 페이지
 ### PC 버전
 
 1. 로그인 페이지
