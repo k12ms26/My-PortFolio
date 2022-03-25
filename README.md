@@ -1,90 +1,41 @@
-# Getting Started with Create React App
+# My PortFolio (2020 Winter 몰입캠프 4주차)
+### 기간: 2021.01.20~2021.01.29
+### 사용한 프로그래밍 언어: React.js
+### SaaS 사용 (Firebase)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- React.js 기반 '나만의 포트폴리오 공간 만들기' 웹 서비스 개발
+- Firebase를 이용한 로그인, 회원가입 등 DB 설계
+- 캘린더 api를 불러와 TodoList CRUD 구현
+- 커뮤니티 게시판 (게시글, 댓글) CRUD 구현
+- EmailJS를 이용한 문의 메일 보내기 구현
+- Material UI를 사용하여 스타일링 강화
+<br>
 
-## Available Scripts
+- 구현 페이지
+### PC 버전
 
-In the project directory, you can run:
+1. 로그인 페이지
+<img src="https://user-images.githubusercontent.com/61970111/160122021-9f902e76-c880-4a6a-b3d7-912bf45a9ce7.png" width="600" height="300" />
 
-<<<<<<< HEAD
-### `yarn start`
-=======
-### `npm start`
->>>>>>> server
+2. 메인 페이지 (이미지 슬라이드 형태)
+<img src="https://user-images.githubusercontent.com/61970111/160122111-f4d875e5-146c-4e2c-9615-6e84258fa310.png" width="600" height="300" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. "대외활동 기록" 페이지
+<img src="https://user-images.githubusercontent.com/61970111/160122229-0c1684bf-901d-4531-9a58-a1f7aeaaedd9.png" width="600" height="300" />
+<img src="https://user-images.githubusercontent.com/61970111/160122280-8e90077a-c4f2-4ce9-a861-9560f191b77b.png" width="600" height="300" />
+<img src="https://user-images.githubusercontent.com/61970111/160122290-efae6afe-ad3e-41be-bd6d-036e5d05a2d3.png" width="600" height="300" />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+4. "글자 수 세기" 페이지
+<img src="https://user-images.githubusercontent.com/61970111/160122472-47d50297-3f3a-4600-b74b-053acad79825.png" width="600" height="300" />
 
-<<<<<<< HEAD
-### `yarn test`
-=======
-### `npm test`
->>>>>>> server
+5. "자유 게시판" 페이지
+<img src="https://user-images.githubusercontent.com/61970111/160122500-1531e233-7727-4612-868f-3c0e980293be.png" width="600" height="300" />
+<img src="https://user-images.githubusercontent.com/61970111/160122521-46dc6a1c-0fc9-4db8-97cf-64fc1bdfd6c4.png" width="600" height="300" />
+<img src="https://user-images.githubusercontent.com/61970111/160122854-9afb4c4f-28b8-4d78-b0d5-ef226ea14bfa.png" width="600" height="300" />
+<img src="https://user-images.githubusercontent.com/61970111/160122614-f47dc3f2-7e50-4870-aab6-3fc03b85e87a.png" width="600" height="300" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. "의견 보내기" 기능 (Email JS 사용)
+<img src="https://user-images.githubusercontent.com/61970111/160123016-ed053657-1fa7-4e2d-92f0-cb26153efb3f.png" width="600" height="300" />
+<img src="https://user-images.githubusercontent.com/61970111/160123023-5b131a1a-a041-4718-85a6-c4c91066cb37.png" width="600" height="150" />
 
-<<<<<<< HEAD
-### `yarn build`
-=======
-### `npm run build`
->>>>>>> server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-<<<<<<< HEAD
-### `yarn eject`
-=======
-### `npm run eject`
->>>>>>> server
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-<<<<<<< HEAD
-### `yarn build` fails to minify
-=======
-### `npm run build` fails to minify
->>>>>>> server
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
